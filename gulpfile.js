@@ -1,22 +1,55 @@
-var gulp = require('gulp');
-var eslint = require('gulp-eslint');
-var mocha = require('gulp-mocha');
+'use strict';
+var
+  gulp = require('gulp'),
+  eslint = require('gulp-eslint'),
+  istanbul = require('gulp-istanbul'),
+  // jsdoc = require("gulp-jsdoc"),
+  mocha = require('gulp-mocha'),
+  // plato = require('plato'),
+  webserver = require('gulp-webserver');
 
-gulp.task('lint', function () {
-  return gulp.src(['./**/*.js'])
-    // eslint() attaches the lint output to the eslint property
-    // of the file object so it can be used by other modules.
-    .pipe(eslint())
-    // eslint.format() outputs the lint results to the console.
-    // Alternatively use eslint.formatEach() (see Docs).
-    .pipe(eslint.format())
-    // To have the process exit with an error code (1) on
-    // lint error, return the stream and pipe to failAfterError last.
-    .pipe(eslint.failAfterError());
+gulp.task('clean', function () {
 });
 
-gulp.task('default', function () {
-    return gulp.src('./tests/routes/bird.js', {read: false})
-        // gulp-mocha needs filepaths so you can't have any plugins before it
-        .pipe(mocha({reporter: 'nyan'}));
+gulp.task('lint', function () {
+  gulp
+    .src(['./**/*.js', '!./node_modules/**', '!./output/**'])
+    .pipe(eslint())
+    .pipe(eslint.format('checkstyle', process.stdout))
+    .pipe(eslint.format());
+});
+
+gulp.task('server', function () {
+  gulp
+    .src('./output')
+    .pipe(webserver({
+      'livereload': true,
+      'host':       'localhost'
+    }));
+});
+
+gulp.task('unitTest', function (cb) {
+  gulp
+    .src(['./**/*.js', '!./tests/**', '!./node_modules/**'])
+    .pipe(istanbul())
+    .pipe(istanbul.hookRequire())
+    .on('finish', function () {
+      gulp
+        .src(['./tests/**/*.js'])
+        .pipe(mocha())
+        .pipe(istanbul.writeReports({'dir': './output/coverage'}))
+        .pipe(istanbul.enforceThresholds({'thresholds': {'global': 60}}))
+        .on('end', cb);
+    });
+});
+
+gulp.task('watch', function () {
+  gulp.watch('./**/*.js', ['default']);
+});
+
+gulp.task('watch:unitTest', function () {
+  gulp.watch('./**/*.js', ['unitTest']);
+});
+
+gulp.task('default', ['lint'], function () {
 });

@@ -1,15 +1,16 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
 
 router
   .route('/')
-  .get(function(req, res) {
+  .get(function (req, res) {
     res.send('Get a random book');
   })
-  .post(function(req, res) {
+  .post(function (req, res) {
     res.send('Add a book');
   })
-  .put(function(req, res) {
+  .put(function (req, res) {
     res.send('Update the book');
   });
 
