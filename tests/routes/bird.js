@@ -1,11 +1,52 @@
 'use strict';
-var assert = require('assert');
+var
+  target = require('../../routes/bird'),
+  should = require('should'),
+  sinon = require('sinon');
 
-describe('Array', function () {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
+describe('bird', function () {
+  describe('root', function () {
+    it('正常レスポンス', function () {
+      var
+        stub_req = sinon.stub(),
+        stub_res = {
+          'send': sinon.stub()
+        };
+
+      target.root(stub_req, stub_res);
+
+      stub_req.notCalled.should.be.true();
+      stub_res.send.withArgs('Birds home page').calledOnce.should.be.true();
+    });
+  });
+
+  describe('about', function () {
+    it('正常レスポンス', function () {
+      var
+        stub_req = sinon.stub(),
+        stub_res = {
+          'send': sinon.stub()
+        };
+
+      target.about(stub_req, stub_res);
+
+      stub_req.notCalled.should.be.true();
+      stub_res.send.withArgs('About birds').calledOnce.should.be.true();
+    });
+  });
+
+  describe('timeLog', function () {
+    it('正常レスポンス', function () {
+      var
+        stub_next = sinon.stub(),
+        stub_req = sinon.stub(),
+        stub_res = sinon.stub();
+
+      target.timeLog(stub_req, stub_res, stub_next);
+
+      stub_req.notCalled.should.be.true();
+      stub_res.notCalled.should.be.true();
+      stub_next.calledOnce.should.be.true();
     });
   });
 });

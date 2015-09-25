@@ -38,18 +38,17 @@ gulp.task('unitTest', function (cb) {
         .src(['./tests/**/*.js'])
         .pipe(mocha())
         .pipe(istanbul.writeReports({'dir': './output/coverage'}))
-        .pipe(istanbul.enforceThresholds({'thresholds': {'global': 60}}))
+        .pipe(istanbul.enforceThresholds({'thresholds': {'global': 20}}))
         .on('end', cb);
     });
 });
 
 gulp.task('watch', function () {
-  gulp.watch('./**/*.js', ['default']);
+  gulp.watch(['./routes/**', './tests/**'], ['default']);
 });
 
 gulp.task('watch:unitTest', function () {
   gulp.watch('./**/*.js', ['unitTest']);
 });
 
-gulp.task('default', ['lint'], function () {
-});
+gulp.task('default', ['lint', 'unitTest']);
