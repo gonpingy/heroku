@@ -8,6 +8,7 @@
     "test": "./node_modules/.bin/gulp"
   },
   "dependencies": {
+    "ect": "^0.5.9",
     "express": "4.13.3"
   },
   "engines": {

@@ -1,15 +1,34 @@
 'use strict';
 var express = require('express');
+var ECT = require('ect');
 var app = express();
 var bird = require('./routes/bird');
 var book = require('./routes/book');
-
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/', function (req, res) {
-  res.send('hello world');
+var ectRenderer = ECT({
+  'watch': true,
+  'root': __dirname + '/views',
+  'ext': '.ect'
 });
 
+app.get('/', function (req, res) {
+  res.render(
+    'page', {
+      title : 'Hello, world!',
+      id : 'main',
+      links: [
+        { name : 'Google', url : 'http://google.com/' },
+        { name : 'Facebook', url : 'http://facebook.com/' },
+        { name : 'Twitter', url : 'http://twitter.com/' }
+      ],
+      upperHelper : function (string) {
+        return string.toUpperCase();
+      }
+  });
+});
+
+app.engine('ect', ectRenderer.render);
 app.set('port', (process.env.PORT || 5000));
+app.set('view engine', 'ect');
 
 var cb0 = function (req, res, next) {
   console.log('CB0');
