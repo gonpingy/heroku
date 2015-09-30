@@ -14,7 +14,7 @@ describe('index', function () {
         if (err) {
           return done(err);
         } else {
-          res.text.should.be.equal('hello world');
+          res.status.should.be.equal(200);
 
           return done();
         }
