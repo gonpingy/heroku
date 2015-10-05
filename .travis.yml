@@ -1,4 +1,7 @@
 language: node_js
 node_js:
-  - "0.12"
-after_script: "cat output/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+- '0.12'
+after_script: cat output/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+deploy:
+  api_key:
+    secure: VStI9SyzoJ2nLX+2m5BXX6H4qYnixnhUpn6VmsvVPktv5pG8SGWVzTCLYieYtQP5V4u0jAZzK8cN74hA9iZbRNWvh/0cR0WAP4Fm623KtrOo1T8RLcfsVfRrkq2KZlXR+/sAeKbTX1PyMdE16C+LOaz/07kEpTx1AhejTCNLgVg=
