@@ -1,11 +1,11 @@
 language: node_js
 node_js:
-- '0.11'
-- '0.10'
+- '0.12'
+after_script: cat output/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: heroku
   api_key:
     secure: Aqht/JlZzdp7+uyDFRD3nHbjky1fD7o+QAx3j/PiATIj7PY+ZZDNu6Nm3y02Sx9KqWYMlZT9IMvrPd8JO8KxBbKdKpV/hE+XxCBheVZuWWNtXAqw2aUnjz+ywQWMBZznA6TtotF5EpWAYhcj/mtZW/3B1ov20vVydnJDy0pt33DJOPOBBzieyA3XuErCWcsE39JTmHjHMQWWORI2cY26OS3tclFlsEiyBXJjeNtKcZoYnl9plDrozVZRYupIKNVNaFn4WYYGzHcX7p4Mhybbki7VMQbYm+SmOxMfcaPNMFayFSpMNkDW2UM3vnWEpVdWcphni0Bzmr23vlP2m8nW9ef3e0Mm24Y64a75fCzI3lHx544W43VCPQJE2hsmn4M1dSsc2Coy47+bXu4zbViN6ipBy9y1HGzNsVpL2O4WwPtYGE7/KEb/L31HKBM1Ln7r3P3J0R/co4f3oUYt4aQUyFsWayfoqEqtQIShFEmC89Z2CCtblbWk1jDrQ52rfynpiOUngX3QJfkLshrzUpk7skAa0OXZRMseDr9jOq0didTEjYfg36k2eB1ssCxgNC/2ZZ1RKjBgfMMvs4y4R6/QORTphlQErtIp/LkfR2/icpiHM0cxDMW0FuPfIiQZJnIkSYo0N58f899vsPkGMUeQuf3YTKJ8S+dFn6Xz1Xtf18k=
-  app: heroku
+  app: young-waters-1965
   on:
     repo: gonpingy/heroku
