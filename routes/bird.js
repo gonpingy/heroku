@@ -1,20 +1,16 @@
-'use strict';
-var
-  express = require('express'),
-  router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // middleware specific to this router
-var timeLog = function (req, res, next) {
-  console.log('Time: ', Date.now());
-  console.log('path: ', req.baseUrl);
+const timeLog = function timeLog(req, res, next) {
   next();
 };
 
-var root = function (req, res) {
+const root = function root(req, res) {
   res.send('Birds home page');
 };
 
-var about = function (req, res) {
+const about = function about(req, res) {
   res.send('About birds');
 };
 

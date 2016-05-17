@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "build": "./node_modules/.bin/webpack",
+    "lint": "./node_modules/.bin/eslint routes",
     "test": "./node_modules/.bin/gulp"
   },
   "dependencies": {
@@ -26,15 +28,25 @@
   "license": "MIT",
   "devDependencies": {
     "coveralls": "^2.11.4",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.1.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "gulp-istanbul": "^0.10.0",
     "gulp-jsdoc": "^0.1.4",
     "gulp-mocha": "^2.1.3",
     "gulp-webserver": "^0.9.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-mocha": "^1.0.1",
+    "karma-webpack": "^1.7.0",
     "phantomjs": "^1.9.18",
     "should": "^7.1.0",
     "sinon": "^1.17.0",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "webpack": "^1.13.0"
   }
 }

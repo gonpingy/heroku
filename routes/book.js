@@ -1,17 +1,15 @@
-'use strict';
-var
-  express = require('express'),
-  router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var get = function (req, res) {
+const get = function get(req, res) {
   res.send('Get a random book');
 };
 
-var post = function (req, res) {
+const post = function post(req, res) {
   res.send('Add a book');
 };
 
-var put = function (req, res) {
+const put = function put(req, res) {
   res.send('Update the book');
 };
 
