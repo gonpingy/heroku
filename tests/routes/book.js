@@ -1,52 +1,47 @@
-'use strict';
-var
-  target = require('../../routes/book'),
-  should = require('should'),
-  sinon = require('sinon');
+const target = require('../../routes/book');
+const should = require('should');
+const sinon = require('sinon');
 
-describe('book', function () {
-  describe('get', function () {
-    it('正常レスポンス', function () {
-      var
-        stub_req = sinon.stub(),
-        stub_res = {
-          'send': sinon.stub()
-        };
+describe('book', () => {
+  describe('get', () => {
+    it('正常レスポンス', () => {
+      const stubReq = sinon.stub();
+      const stubRes = {
+        send: sinon.stub(),
+      };
 
-      target.get(stub_req, stub_res);
-      stub_req.notCalled.should.be.true();
+      target.get(stubReq, stubRes);
+      stubReq.notCalled.should.be.true();
 
-      stub_res.send.withArgs('Get a random book').calledOnce.should.be.true();
+      stubRes.send.withArgs('Get a random book').calledOnce.should.be.true();
     });
   });
 
-  describe('post', function () {
-    it('正常レスポンス', function () {
-      var
-        stub_req = sinon.stub(),
-        stub_res = {
-          'send': sinon.stub()
-        };
+  describe('post', () => {
+    it('正常レスポンス', () => {
+      const stubReq = sinon.stub();
+      const stubRes = {
+        send: sinon.stub(),
+      };
 
-      target.post(stub_req, stub_res);
-      stub_req.notCalled.should.be.true();
+      target.post(stubReq, stubRes);
+      stubReq.notCalled.should.be.true();
 
-      stub_res.send.withArgs('Add a book').calledOnce.should.be.true();
+      stubRes.send.withArgs('Add a book').calledOnce.should.be.true();
     });
   });
 
-  describe('put', function () {
-    it('正常レスポンス', function () {
-      var
-        stub_req = sinon.stub(),
-        stub_res = {
-          'send': sinon.stub()
-        };
+  describe('put', () => {
+    it('正常レスポンス', () => {
+      const stubReq = sinon.stub();
+      const stubRes = {
+        send: sinon.stub(),
+      };
 
-      target.put(stub_req, stub_res);
-      stub_req.notCalled.should.be.true();
+      target.put(stubReq, stubRes);
+      stubReq.notCalled.should.be.true();
 
-      stub_res.send.withArgs('Update the book').calledOnce.should.be.true();
+      stubRes.send.withArgs('Update the book').calledOnce.should.be.true();
     });
   });
 });

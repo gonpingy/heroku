@@ -1,17 +1,13 @@
-'use strict';
-var
-  gulp = require('gulp'),
-  eslint = require('gulp-eslint'),
-  istanbul = require('gulp-istanbul'),
-  // jsdoc = require("gulp-jsdoc"),
-  mocha = require('gulp-mocha'),
-  // plato = require('plato'),
-  webserver = require('gulp-webserver');
+const gulp = require('gulp');
+const eslint = require('gulp-eslint');
+const istanbul = require('gulp-istanbul');
+const mocha = require('gulp-mocha');
+const webserver = require('gulp-webserver');
 
-gulp.task('clean', function () {
+gulp.task('clean', () => {
 });
 
-gulp.task('lint', function () {
+gulp.task('lint', () => {
   gulp
     .src(['./**/*.js', '!./node_modules/**', '!./output/**'])
     .pipe(eslint())
@@ -19,35 +15,41 @@ gulp.task('lint', function () {
     .pipe(eslint.format());
 });
 
-gulp.task('server', function () {
+gulp.task('server', () => {
   gulp
     .src('./output')
     .pipe(webserver({
-      'livereload': true,
-      'host':       'localhost'
+      livereload: true,
+      host: 'localhost',
     }));
 });
 
-gulp.task('unitTest', function (cb) {
+gulp.task('unitTest', (cb) => {
   gulp
     .src(['./**/*.js', '!./tests/**', '!./node_modules/**'])
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
-    .on('finish', function () {
+    .on('finish', () => {
       gulp
         .src(['./tests/**/*.js'])
         .pipe(mocha())
-        .pipe(istanbul.writeReports({'dir': './output/coverage'}))
-        .pipe(istanbul.enforceThresholds({'thresholds': {'global': 20}}))
+        .pipe(istanbul.writeReports({
+          dir: './output/coverage',
+        }))
+        .pipe(istanbul.enforceThresholds({
+          thresholds: {
+            global: 20,
+          },
+        }))
         .on('end', cb);
     });
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch(['./routes/**', './tests/**'], ['default']);
 });
 
-gulp.task('watch:unitTest', function () {
+gulp.task('watch:unitTest', () => {
   gulp.watch('./**/*.js', ['unitTest']);
 });
 

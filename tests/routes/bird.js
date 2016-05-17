@@ -1,52 +1,47 @@
-'use strict';
-var
-  target = require('../../routes/bird'),
-  should = require('should'),
-  sinon = require('sinon');
+const target = require('../../routes/bird');
+const should = require('should');
+const sinon = require('sinon');
 
-describe('bird', function () {
-  describe('root', function () {
-    it('正常レスポンス', function () {
-      var
-        stub_req = sinon.stub(),
-        stub_res = {
-          'send': sinon.stub()
-        };
+describe('bird', () => {
+  describe('root', () => {
+    it('正常レスポンス', () => {
+      const stubReq = sinon.stub();
+      const stubRes = {
+        send: sinon.stub(),
+      };
 
-      target.root(stub_req, stub_res);
+      target.root(stubReq, stubRes);
 
-      stub_req.notCalled.should.be.true();
-      stub_res.send.withArgs('Birds home page').calledOnce.should.be.true();
+      stubReq.notCalled.should.be.true();
+      stubRes.send.withArgs('Birds home page').calledOnce.should.be.true();
     });
   });
 
-  describe('about', function () {
-    it('正常レスポンス', function () {
-      var
-        stub_req = sinon.stub(),
-        stub_res = {
-          'send': sinon.stub()
-        };
+  describe('about', () => {
+    it('正常レスポンス', () => {
+      const stubReq = sinon.stub();
+      const stubRes = {
+        send: sinon.stub(),
+      };
 
-      target.about(stub_req, stub_res);
+      target.about(stubReq, stubRes);
 
-      stub_req.notCalled.should.be.true();
-      stub_res.send.withArgs('About birds').calledOnce.should.be.true();
+      stubReq.notCalled.should.be.true();
+      stubRes.send.withArgs('About birds').calledOnce.should.be.true();
     });
   });
 
-  describe('timeLog', function () {
-    it('正常レスポンス', function () {
-      var
-        stub_next = sinon.stub(),
-        stub_req = sinon.stub(),
-        stub_res = sinon.stub();
+  describe('timeLog', () => {
+    it('正常レスポンス', () => {
+      const stubNext = sinon.stub();
+      const stubReq = sinon.stub();
+      const stubRes = sinon.stub();
 
-      target.timeLog(stub_req, stub_res, stub_next);
+      target.timeLog(stubReq, stubRes, stubNext);
 
-      stub_req.notCalled.should.be.true();
-      stub_res.notCalled.should.be.true();
-      stub_next.calledOnce.should.be.true();
+      stubReq.notCalled.should.be.true();
+      stubRes.notCalled.should.be.true();
+      stubNext.calledOnce.should.be.true();
     });
   });
 });
