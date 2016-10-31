@@ -3,6 +3,7 @@ const eslint = require('gulp-eslint');
 const istanbul = require('gulp-istanbul');
 const mocha = require('gulp-mocha');
 const webserver = require('gulp-webserver');
+const fileinclude = require('gulp-file-include');
 
 gulp.task('clean', () => {
 });
@@ -43,6 +44,15 @@ gulp.task('unitTest', (cb) => {
         }))
         .on('end', cb);
     });
+});
+
+gulp.task('fileinclude', function() {
+  gulp.src(['public/*.html'])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('watch', () => {
